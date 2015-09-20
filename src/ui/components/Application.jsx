@@ -12,6 +12,7 @@ import PositionInfo from './PositionInfo';
 import VolumeControls from './VolumeControls';
 import ZoneGroupList from './ZoneGroupList';
 import GroupManagement from './GroupManagement';
+import MusicServiceManagement from './MusicServiceManagement';
 import SearchBar from './SearchBar';
 import Loader from './Loader';
 
@@ -52,6 +53,7 @@ class Application extends React.Component {
 					</div>
 				</div>
 				<GroupManagement />
+				<MusicServiceManagement />
 				<Loader />
 			</div>
 		);
