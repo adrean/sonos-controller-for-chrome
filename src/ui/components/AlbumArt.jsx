@@ -38,7 +38,7 @@ class AlbumArt extends React.Component {
 
 		let sonos = SonosService._currentDevice;
 		let url = this.props.src;
-		let srcUrl = (url.indexOf('http://') === 0) ? url : 'http://' + sonos.host + ':' + sonos.port + decodeURIComponent(url);
+		let srcUrl = (url.indexOf('https://') === 0 || url.indexOf('http://') === 0) ? url : 'http://' + sonos.host + ':' + sonos.port + decodeURIComponent(url);
 
 		this.srcUrl = srcUrl;
 		this.promise = resourceLoader.add(srcUrl).then((data) => {
@@ -65,7 +65,7 @@ class AlbumArt extends React.Component {
 
 	componentDidUpdate () {
 		if(this.state.visible && !this.state.src) {
-			// wait half a second, to prevent random scrolling fast through viewport 
+			// wait half a second, to prevent random scrolling fast through viewport
 			// stuff to get loaded
 			this.timeout = window.setTimeout(this._loadImage.bind(this), 100)
 		}
