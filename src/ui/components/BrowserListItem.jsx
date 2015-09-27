@@ -20,7 +20,7 @@ class BrowserListItem extends React.Component  {
 
 		let item = this.props.model;
 
-		if(item.class === 'object.item.audioItem.musicTrack' || item.class === 'object.item.audioItem' || (item.trackMetadata && item.trackMetadata.canPlay === "true")) {
+		if(item.class === 'object.item.audioItem.musicTrack' || item.class === 'object.item.audioItem' || item.trackMetadata) {
 			BrowserListActions.playNow(item);
 		} else {
 			let node = React.findDOMNode(this);
@@ -92,7 +92,7 @@ class BrowserListItem extends React.Component  {
 
 		let artistInfo;
 
-		if(item.class || (item.trackMetadata && item.trackMetadata.canPlay === "true")) {
+		if(item.class || item.trackMetadata) {
 
 
 			className = className + ' playable ';

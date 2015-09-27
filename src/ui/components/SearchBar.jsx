@@ -26,7 +26,7 @@ class SearchBar extends React.Component {
 
 		if(this.state.searching) {
 			cancelButton = (
-				<i className="material-icons" 
+				<i className="material-icons"
 					onClick={this._onClick.bind(this)}>cancel</i>
 			);
 		}
