@@ -1,7 +1,7 @@
 "use strict";
 
 import _ from 'lodash';
-import React from 'react/addons';
+import React from 'react';
 
 import SearchBarActions from '../actions/SearchBarActions';
 
@@ -34,7 +34,7 @@ class SearchBar extends React.Component {
 		return (
 			<div id="search">
 				<input type="text" id="searchfield" value={this.state.term} onChange={this._onChange.bind(this)} />
-				{{cancelButton}}
+				{cancelButton}
 			</div>
 		);
 	}

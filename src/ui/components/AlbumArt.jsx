@@ -1,6 +1,7 @@
 "use strict";
 
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import SonosService from '../services/SonosService';
 import resourceLoader from '../helpers/resourceLoader';
@@ -17,7 +18,7 @@ class AlbumArt extends React.Component {
 
 	_isVisible (props) {
 		let vp = props.viewport;
-		let rect = React.findDOMNode(this).getBoundingClientRect();
+		let rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
 
 		if(rect.bottom > vp.top && rect.top < vp.bottom) {
 			return true;
