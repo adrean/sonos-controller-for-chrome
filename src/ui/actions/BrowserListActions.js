@@ -258,6 +258,7 @@ export default {
 				.then((res) => {
 					let state = {
 						title: client.name,
+						serviceClient: client,
 						items: res.mediaCollection.map((i) => {
 							i.serviceClient = client;
 							return i;
@@ -280,6 +281,10 @@ export default {
 					let items = [];
 
 					if(res.mediaMetadata) {
+						if(!_.isArray(res.mediaMetadata)) {
+							res.mediaMetadata = [res.mediaMetadata];
+						}
+
 						res.mediaMetadata.forEach((i) => {
 							i.serviceClient = client;
 							items[i.$$position] =  i;
@@ -287,6 +292,10 @@ export default {
 					}
 
 					if(res.mediaCollection) {
+						if(!_.isArray(res.mediaCollection)) {
+							res.mediaCollection = [res.mediaCollection];
+						}
+
 						res.mediaCollection.forEach((i) => {
 							i.serviceClient = client;
 							items[i.$$position] =  i;
@@ -295,6 +304,7 @@ export default {
 
 					let state = {
 						title: item.title,
+						serviceClient: client,
 						items: items,
 					};
 
