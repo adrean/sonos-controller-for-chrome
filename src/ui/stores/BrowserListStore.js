@@ -65,6 +65,10 @@ const LIBRARY_STATE = {
 		{
 			title: 'Playlists',
 			searchType: 'A:PLAYLISTS'
+		},
+		{
+			title: 'Folders',
+			searchType: 'S:'
 		}
 	]
 };
@@ -167,6 +171,15 @@ Dispatcher.register(action => {
 
 		case Constants.BROWSER_CHANGE_SEARCH_MODE:
 			BrowserListStore._searchTarget = action.mode;
+			BrowserListStore.emitChange();
+			break;
+
+		case Constants.BROWSER_HOME:
+			BrowserListStore._history = [];
+			BrowserListStore.endSearch();
+			BrowserListStore.setSearchResults(null);
+			BrowserListStore._searchTarget = DEFAULT_SEARCH_TARGET;
+			BrowserListStore.setState(START_STATE);
 			BrowserListStore.emitChange();
 			break;
 
