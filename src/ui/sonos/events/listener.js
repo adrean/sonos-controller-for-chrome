@@ -13,7 +13,7 @@ chrome.sockets.tcpServer.onAccept.addListener(function (info) {
 	var stream = new Stream(info.clientSocketId, function (request) {
 
 		if(listeners[info.socketId]) {
-			listeners[info.socketId]._messageHandler(request); 
+			listeners[info.socketId]._messageHandler(request);
 		}
 
 	});
@@ -48,7 +48,7 @@ class Listener {
 						callback();
 					});
 
-			 });	
+			 });
 		});
 	}
 
@@ -108,7 +108,7 @@ class Listener {
 				method: 'SUBSCRIBE',
 				headers: {
 					SID: sid,
-					Timeout: 'Second-3600'
+					Timeout: 'Second-600'
 				}
 			};
 
@@ -132,7 +132,7 @@ class Listener {
 				headers: {
 					callback: '<http://' + ip.address() + ':' + this.port + '/notify>',
 					NT: 'upnp:event',
-					Timeout: 'Second-3600'
+					Timeout: 'Second-600'
 				}
 			};
 
