@@ -60,6 +60,38 @@ export default {
 		});
 	},
 
+	setPlayMode (mode) {
+		let sonos = SonosService._currentDevice;
+		let avTransport = new Services.AVTransport(sonos.host, sonos.port);
+
+		avTransport.SetPlayMode({
+			InstanceID: 0,
+			NewPlayMode: mode,
+		}, (err) => {
+			Dispatcher.dispatch({
+				actionType: Constants.OPTIMISTIC_CURRENT_PLAY_MODE_UPDATE,
+				mode: mode,
+			});
+		});
+	},
+
+	setCrossfade (state) {
+		let sonos = SonosService._currentDevice;
+		let avTransport = new Services.AVTransport(sonos.host, sonos.port);
+
+		avTransport.SetCrossfadeMode({
+			InstanceID: 0,
+			CrossfadeMode: Number(state),
+		}, (err, info) => {
+			let mode = state;
+
+			Dispatcher.dispatch({
+				actionType: Constants.OPTIMISTIC_CURRENT_CROSSFADE_MODE_UPDATE,
+				mode: mode,
+			});
+		});
+	},
+
 	refreshPosition () {
 		let sonos = SonosService._currentDevice;
 

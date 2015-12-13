@@ -11,6 +11,8 @@ const CHANGE_EVENT = 'change';
 var PlayerStore = _.assign({}, events.EventEmitter.prototype, {
 
 	_playing : false,
+	_crossfade : false,
+	_playMode : 'NORMAL',
 	_positionInfo: null,
 
 	emitChange () {
@@ -23,6 +25,14 @@ var PlayerStore = _.assign({}, events.EventEmitter.prototype, {
 
 	isPlaying () {
 		return this._playing;
+	},
+
+	isCrossfade () {
+		return this._crossfade;
+	},
+
+	getPlayMode () {
+		return this._playMode;
 	},
 
 	setPlaying (playing) {
@@ -58,6 +68,18 @@ Dispatcher.register(action => {
 			PlayerStore.emitChange();
 			break;
 
+		case Constants.OPTIMISTIC_CURRENT_PLAY_MODE_UPDATE:
+		case Constants.SONOS_SERVICE_CURRENT_PLAY_MODE_UPDATE:
+			PlayerStore._playMode = action.mode;
+			PlayerStore.emitChange();
+			break;
+
+		case Constants.OPTIMISTIC_CURRENT_CROSSFADE_MODE_UPDATE:
+		case Constants.SONOS_SERVICE_CURRENT_CROSSFADE_MODE_UPDATE:
+			PlayerStore._crossfade = action.mode;
+			PlayerStore.emitChange();
+			break;
+
 		case Constants.SONOS_SERVICE_PLAYSTATE_UPDATE:
 			let state = action.state;
 			let playing = false;
@@ -82,4 +104,3 @@ Dispatcher.register(action => {
 });
 
 export default PlayerStore;
-
